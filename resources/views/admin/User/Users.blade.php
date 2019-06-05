@@ -119,6 +119,7 @@
                                             
                                             <th>Type</th>
                                             <th>Active Status</th>
+                                            
                                             <th>More</th>
                                             
                                         </tr>
@@ -130,28 +131,31 @@
                                             
                                             <th>Type</th>
                                             <th>Active Status</th>
+                                        
                                             <th>More</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                    
+                                   @if($users)
+                                        @foreach($users as $user)
                                         <tr>
-                                            <td></td>
-                                            <td></td>
+                                            <td>{{$user->id}}</td>
+                                            <td>{{$user->email}}</td>
                                             
                                             
-                                            <td></td>
-                                            <td>
-                                              
-                                            </td>
+                                            <td>{{$user->role ? $user->role->name: 'user has no role'}}</td>
+                                            <td>{{$user->is_active=1 ? 'Active': 'Not Active'}}</td>
                                             <td><button class="btn btn-secondary btn-sm " data-toggle="modal" data-target="#userview">View</button> <button type="button" class="btn btn-primary btn-sm"><a href="Users_edit.html" style="text-decoration: none; color: #fff;"><i class="far fa-edit"></i>Edit</a></button>
                                               <button type="button" class="btn btn-danger btn-sm">
 												<i class="fas fa-trash-alt"></i>
 											</button>
                                             </td>
                                         </tr>
+
+                                        @endforeach
                                         
-                                       
+                                       @endif
                                         
                                         
 

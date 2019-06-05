@@ -24,22 +24,34 @@
                     <div align="center" ><img  src="{{URL::asset('img/logo.png')}}" alt="IMG-LOGO" style="width: 100%; margin-top: 20%;"></div>
                     
                     <div class="login__form">
-                        <form action="{{url('/')}}" method="get">
-                        <div class="login__row">
+                        <form action="{{route('login')}}" method="POST">
+                        {{ csrf_field() }} 
+                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}"> 
                             <svg class="login__icon name svg-icon" viewBox="0 0 20 20">
                             <path d="M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8" />
                             </svg>
-                            <input type="text" class="login__input name" placeholder="Username" required>
+                            <input id="email" value="{{ old('email') }}" name="email" type="email" class="login__input name" placeholder="Email" required autofocus>
+
+                            @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
                         </div>
-                        <div class="login__row">
+                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <svg class="login__icon pass svg-icon" viewBox="0 0 20 20">
                             <path d="M0,20 20,20 20,8 0,8z M10,13 10,16z M4,8 a6,8 0 0,1 12,0" />
                             </svg>
-                            <input type="password" class="login__input pass" placeholder="Password" required>
+                            <input id="password" value="{{ old('password') }}" name="password" type="password" class="login__input pass" placeholder="Password" required>
+                            @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
                         </div>
                         <button type="submit" class="login__submit" >Sign in</button>
                         </form>
-                    </div> 
+                    </div>
                     
                 </div>
                 
